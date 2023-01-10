@@ -100,11 +100,11 @@ toml==0.10.2
 tomli==2.0.1
 tomlkit==0.11.6
 toolz==0.12.0
--f https://github.com/pytorch/pytorch#from-source 
+-f https://download.pytorch.org/whl/cpu 
 torch==1.13.1
--f https://github.com/pytorch/pytorch#from-source 
+-f https://download.pytorch.org/whl/cpu
 torchaudio==0.13.1
--f https://github.com/pytorch/pytorch#from-source 
+-f https://download.pytorch.org/whl/cpu
 torchvision==0.14.1
 tornado==6.2
 tqdm==4.64.1
