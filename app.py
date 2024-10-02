@@ -3,10 +3,10 @@ import torch
 import numpy as np
 import cv2
 
-st.title("YOLOv5 Mask Detection WebApp")
+st.title("YOLOv8 Mask Detection WebApp")
 
-# Load YOLOv5 model using torch hub (YOLOv5-specific)
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5/runs/train/exp/weights/last.pt', force_reload=True)
+# Load YOLOv8 model
+model = torch.hub.load('ultralytics/yolov8', 'custom', path='yolov5/runs/train/exp/weights/last.pt', force_reload=True)
 
 st.write("Model loaded")
 
@@ -17,13 +17,13 @@ if uploaded_file is not None:
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     st.image(img, caption='Uploaded Image.', use_column_width=True)
 
-    # Perform inference using YOLOv5 model
+    # Perform inference using YOLOv8 model
     results = model(img)
 
     # Render results on the image
-    output = np.squeeze(results.render())  # Use YOLOv5's render method
+    output = results[0].plot()  # Use YOLOv8's plot method
     st.image(output, caption='Output Image', use_column_width=True)
 else:
     st.warning("Please upload an image!")
 
-st.write("Thank you for using YOLOv5 Mask Detection WebApp.")
+st.write("Thank you for using YOLOv8 Mask Detection WebApp.")
