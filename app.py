@@ -1,13 +1,13 @@
 import streamlit as st
 import torch
+from matplotlib import pyplot as plt
 import numpy as np
 import cv2
-from ultralytics import YOLO
 
-st.title("YOLOv5/YOLOv8 Mask Detection WebApp")
+st.title("YOLOv5 Mask Detection WebApp")
 
-# Load YOLOv8 model
-model = YOLO('yolov5/runs/train/exp/weights/last.pt')
+# Load YOLOv5 model using torch hub (YOLOv5-specific)
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5/runs/train/exp/weights/last.pt', force_reload=True)
 
 st.write("Model loaded")
 
@@ -18,13 +18,13 @@ if uploaded_file is not None:
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     st.image(img, caption='Uploaded Image.', use_column_width=True)
 
-    # Perform inference
+    # Perform inference using YOLOv5 model
     results = model(img)
 
-    # Render the results on the image
-    output = np.squeeze(results[0].plot())  # YOLOv8 uses plot() for rendering
+    # Render results on the image
+    output = np.squeeze(results.render())  # Use YOLOv5's render method
     st.image(output, caption='Output Image', use_column_width=True)
 else:
     st.warning("Please upload an image!")
 
-st.write("Thank you for using YOLO Mask Detection WebApp.")
+st.write("Thank you for using YOLOv5 Mask Detection WebApp.")
