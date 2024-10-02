@@ -6,7 +6,7 @@ import cv2
 st.title("YOLOv8 Mask Detection WebApp")
 
 # Load YOLOv8 model
-model = torch.hub.load('ultralytics/yolov8', 'custom', path='yolov5/runs/train/exp/weights/last.pt', force_reload=True)
+model = torch.hub.load('ultralytics/yolov8', 'custom', path='yolov5/runs/train/exp/weights/last.pt', force_reload=True,trust_repo=True)
 
 st.write("Model loaded")
 
